@@ -101,42 +101,6 @@ def insert_index(index, low, high, black_pix, split_position):
         split_position.insert(index, min_index)
         split_position.insert(index + 1, min_index + 1)
 
-def import_module2():
-    module_dic = {}
-    print("Start to import module")
-    for f in os.listdir(config.CAPTCHA_MODULE):
-        if not f.endswith(".png"):
-            continue
-
-        img = Image.open(config.CAPTCHA_MODULE + f)
-        img = img.convert("RGBA")
-        pixdata = img.load()
-
-        identity_value = []
-
-        for y in xrange(img.size[1]):
-            for x in xrange(img.size[0]):
-                if pixdata[x, y] == (0, 0, 0, 255):
-                    identity_value.append(1)
-                else:
-                    identity_value.append(0)
-
-        if module_dic.has_key(f[0 : 1]):
-            module_dic[f[0 : 1]].append(identity_value)
-        else:
-            module_dic[f[0 : 1]] = [identity_value]
-    for key in module_dic:
-        print("%s: %d" % (key, len(module_dic[key])))
-    
-    json_module = json.JSONEncoder().encode(module_dic)
-    f_handle = open(config.DATA_FILE_NAME, "w")
-    try:
-        f_handle.write(json_module)
-    finally:
-        f_handle.close()
-        
-    print("Finish!")
-
 def import_module():
     module_dic = {}
     print("Start to import module")
@@ -148,14 +112,14 @@ def import_module():
         img = img.convert("RGBA")
         pixdata = img.load()
 
-        identity_value = []
+        identify_value = []
 
         for x in xrange(img.size[0]):
             row_count = 0
             for y in xrange(img.size[1]):
                 if pixdata[x, y] == (0, 0, 0, 255):
                     row_count += 1
-            identity_value.append(row_count)
+            identify_value.append(row_count)
         col_list = []
         for y in xrange(img.size[1]):
             col_count = 0
@@ -165,13 +129,19 @@ def import_module():
             col_list.append(col_count)
         col_list = filter(lambda x : x != 0,col_list)
 
-        identity_value = identity_value + col_list
+        identify_value = identify_value + col_list
+        identify_value = filter(lambda x : x != 0, identify_value)
+        identify_str = "".join(str("%x" % e) for e in identify_value)
         if module_dic.has_key(f[0 : 1]):
-            module_dic[f[0 : 1]].append(identity_value)
+            module_dic[f[0 : 1]].append(identify_str)
         else:
-            module_dic[f[0 : 1]] = [identity_value]
+            module_dic[f[0 : 1]] = [identify_str]
 #    for key in module_dic:
-#        print("%s: %d" % (key, len(module_dic[key])))
+#        print("%s: %s" % (key, module_dic[key][0]))
+    for key in module_dic:
+        for i in module_dic[key]:
+            print("%s: %s" % (key, i))
+        print("")
     
     json_module = json.JSONEncoder().encode(module_dic)
     f_handle = open(config.DATA_FILE_NAME, "w")
