@@ -2,7 +2,7 @@
 '''
 Created on Jul 13, 2014
 
-@author: gzq
+@author: Jason Guo E-mail: zqguo@zqguo.com
 '''
 import datetime
 import Tkinter as tk

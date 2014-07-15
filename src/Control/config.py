@@ -2,7 +2,7 @@
 '''
 Created on Jul 13, 2014
 
-@author: gzq
+@author: Jason Guo E-mail: zqguo@zqguo.com
 '''
 LOGINURL = "http://xk.fudan.edu.cn/xk/loginServlet"
 LOGINCAPTCHAURL = "http://xk.fudan.edu.cn/xk/image.do"
