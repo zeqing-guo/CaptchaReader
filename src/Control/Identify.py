@@ -1,7 +1,7 @@
 '''
 Created on Aug 28, 2014
 
-@author: gzq
+@author: Jason Guo E-mail: zqguo@zqguo.com
 '''
 
 import cStringIO

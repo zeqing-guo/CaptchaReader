@@ -9,12 +9,9 @@ Modified on Aug 28, 2014
 import urllib
 import urllib2
 import cookielib
-import cStringIO
 import datetime
 
 from sklearn.externals import joblib
-
-from PIL import Image
 
 import config
 from Identify import Identify
