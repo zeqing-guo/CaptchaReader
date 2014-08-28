@@ -5,7 +5,7 @@ Identify the CAPTCHA of http://xk.fudan.edu.cn
 
 现在对于复旦大学选课系统验证码的识别功能已经开发完成。
 
-本程序处理图片采用了二值化和垂直像素直方图的统计方法分割（其实直接按像素分割效果也很好）进行图片预处理，采用SVM进行图像识别。因此你在测试本程序之前需要下载机器学习相关的第三方库[scikit-learn](http://scikit-learn.org/stable/index.html)与用于科学计算的第三方库numpy。
+本程序处理图片采用了二值化和垂直像素直方图的统计方法分割（其实直接按像素分割效果也很好）进行图片预处理，采用SVM进行图像识别。因此你在测试本程序之前需要下载安装机器学习相关的第三方库[scikit-learn](http://scikit-learn.org/stable/index.html)与用于科学计算的第三方库[numpy](http://www.numpy.org)。
 
 在两次大规模的登录测试（每次测试登录501次）中，程序对于复旦选课系统验证码的识别准确率都达到了100%。
 
