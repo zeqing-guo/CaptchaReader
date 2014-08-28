@@ -45,11 +45,6 @@ class Main():
         self.BT = tk.Button(self.buttom_frame, text = "开始刷课", command = self.process_input)
         self.BT.pack(side = tk.LEFT)
         
-        # Proxy
-        self.var = tk.IntVar()
-        self.CB = tk.Checkbutton(self.buttom_frame, text = "使用代理", variable = self.var)
-        self.CB.pack(side = tk.RIGHT)
-        
         # Username label & username entry
         self.UL = tk.Label(self.left_frame, text = "用户名：")
         self.UE = tk.Entry(self.right_frame, bd = 2)
@@ -81,7 +76,7 @@ class Main():
         self.lesson_num = self.LE.get()
         
         starttime = datetime.datetime.now()
-        cs = CourseSelection(self.username, self.password, self.lesson_num, self.var.get())
+        cs = CourseSelection(self.username, self.password, self.lesson_num)
         cs.login()
         endtime = datetime.datetime.now()
         interval = endtime - starttime
